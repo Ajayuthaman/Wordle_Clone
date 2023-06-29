@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameFlowManager : MonoBehaviour
@@ -32,6 +33,8 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Keys on KeyBoard")]
     private Key[] _keys;
+
+    public GameObject winUi;
 
     List<Letter> _letters;
 
@@ -266,6 +269,7 @@ public class GameFlowManager : MonoBehaviour
                 else
                 {
                     PuzzleState = PuzzleState.Complete;
+                    Invoke("WinUi", 3.2f);
                 }
             }
         }
@@ -289,5 +293,10 @@ public class GameFlowManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void WinUi()
+    {
+        winUi.SetActive(true);
     }
 }
